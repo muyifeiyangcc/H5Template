@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--van-gray-1);
+  font-size: var(--van-font-size-lg);
+  color-scheme: light;
+}
+
+html.dark {
+  background: #222;
+  color-scheme: dark;
+}
+
+#app {
+  height: 100%;
+  position: relative;
+  background: #0e080f;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+// 通用数字显示
+.public-number {
+  margin-top: 4px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0px;
+  line-height: 21.2px;
+  text-align: center;
+  vertical-align: top;
+
+  background: linear-gradient(150deg,
+      rgb(71, 252, 255) 0%,
+      rgb(255, 94, 135) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  -webkit-text-stroke: 1px #fff;
+}
+
+// 通用输入框
+.public-input {
+  border-radius: var(--ai-input-text-border-radius);
+  background: var(--ai-input-text-bg-color) !important;
+
+  input {
+    color: var(--ai-input-text-color);
+
+    &::placeholder {
+      color: var(--ai-input-text-placeholder-text-color);
+      font-size: var(--ai-input-text-font-size);
+      font-weight: var(--ai-input-text-font-weight);
+    }
+  }
+}
