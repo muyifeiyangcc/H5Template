@@ -1,4 +1,5 @@
 import { useUserStore } from '@/stores'
+import { useWindow } from './useWindow'
 
 /**
  * app 通信值
@@ -15,9 +16,12 @@ export type AppCommunication = 'updateComment' | 'updateUser' | 'updatePost' | '
 
 /** 路由跳转 */
 export const useJump = () => {
+  const { winUserListData } = useWindow()
   const { userInfo } = useUserStore()
   const router = useRouter()
   const route = useRoute()
+
+  const userList = ref<UserInfo[]>(winUserListData)
 
   /**
    * 返回
@@ -83,7 +87,13 @@ export const useJump = () => {
     if (state === 1) {
       window.flutter_inappwebview.callHandler(key, value).then(v => {
         if (key === 'Recharge') {
-          userInfo.coins = v
+          userInfo.coins += v
+          userList.value.forEach(v => {
+            if (v.userId === userInfo.userId) {
+              v.coins = userInfo.coins
+            }
+          })
+          appParams({ key: 'updateUser', value: userList.value, state: 1 })
         }
       })
     }
