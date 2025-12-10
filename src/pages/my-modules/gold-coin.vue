@@ -23,7 +23,7 @@ const onRecharge = () => {
 </script>
 
 <template>
-  <div class="gold-coin_box">
+  <div safe-area-inset-top class="gold-coin_box">
     <div p-layout-padding>
       <ul class="top-box">
         <li>
