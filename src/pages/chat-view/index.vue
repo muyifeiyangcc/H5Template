@@ -32,8 +32,8 @@ const onSubmit = () => {
       }
       return v
     })
-    appParams({ key: 'updateUser', value: list, state: 0 })
-    jumpToChatDetail()
+      appParams({ key: 'updateUser', value: list, state: 1 })
+      jumpToChatDetail()
   }
 }
 </script>
