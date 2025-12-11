@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import Head from '@/assets/public/Head.png'
+  import Head from '@/assets/public/ai-head.png'
 
   const listData = defineModel<MessageInfo[]>('list', {
     type: Array as PropType<MessageInfo[]>,
