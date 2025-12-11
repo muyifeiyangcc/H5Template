@@ -39,6 +39,9 @@
               {{ item.sendContent }}
             </p>
           </div>
+          <div v-if="item.loading" flex items-center>
+            <van-loading type="spinner" />
+          </div>
         </div>
         <van-image
           v-if="item.sendPicUrl"
