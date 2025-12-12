@@ -1,16 +1,25 @@
 <script setup lang="ts">
-import Head from "@/assets/public/Head.png";
-import swipeOne from "@/assets/public/swipe-1.png";
-import { useAppImgStyle } from "@/hooks/useAppImgStyle";
-import { useDetail } from "@/hooks/useDetail";
+  import Head from '@/assets/public/Head.png'
+  import swipeOne from '@/assets/public/swipe-1.png'
+  import { useAppImgStyle } from '@/hooks/useAppImgStyle'
+  import { useDetail } from '@/hooks/useDetail'
+  import { useWindow } from '@/hooks/useWindow'
 
-defineOptions({
-  name: "ArticleDetail",
-});
+  defineOptions({
+    name: 'ArticleDetail'
+  })
 
-const { detailLikeIcon, likeIcon } = useAppImgStyle();
-const { loding, dynamicInfo, commentList, isLike, onAvator, onLike, onSend } =
-  useDetail();
+  const { detailLikeIcon, likeIcon } = useAppImgStyle()
+  const { winPublishImageListData } = useWindow()
+  const {
+    loding,
+    dynamicInfo,
+    commentList,
+    isLike,
+    onAvator,
+    onLike,
+    onSend
+  } = useDetail()
 </script>
 
 <template>
@@ -65,14 +74,11 @@ const { loding, dynamicInfo, commentList, isLike, onAvator, onLike, onSend } =
         <li ml-5 class="w-[68%]">
           <span ai-text-desc>{{ dynamicInfo?.dynamicDesc }}</span>
           <p flex flex-wrap>
-            <span
-              v-for="(item, index) in dynamicInfo?.dynamicTag"
-              :key="index"
-              mr-2
-              mt-4
-              ai-tag-btn
-            >
-              {{ item }}
+            <span mr-2 mt-4 ai-tag-btn>
+              {{
+                winPublishImageListData[dynamicInfo?.dynamicTitleType]
+                  .name
+              }}
             </span>
           </p>
         </li>
@@ -80,7 +86,10 @@ const { loding, dynamicInfo, commentList, isLike, onAvator, onLike, onSend } =
 
       <van-divider content-position="left">Comments</van-divider>
 
-      <comment-card :list="commentList" class="article-comment-card_box" />
+      <comment-card
+        :list="commentList"
+        class="article-comment-card_box"
+      />
 
       <input-box @send="onSend" />
     </div>
@@ -88,18 +97,18 @@ const { loding, dynamicInfo, commentList, isLike, onAvator, onLike, onSend } =
 </template>
 
 <style lang="less" scoped>
-.article-detail_box {
-  background: var(--ai-article-detail-bg-color);
-  min-height: 100vh;
-}
-
-.my-swipe {
-  .van-swipe-item {
-    height: 379px;
+  .article-detail_box {
+    background: var(--ai-article-detail-bg-color);
+    min-height: 100vh;
   }
-}
 
-.article-comment-card_box {
-  padding-bottom: calc(80px + var(--ai-view-padding-bottom));
-}
+  .my-swipe {
+    .van-swipe-item {
+      height: 379px;
+    }
+  }
+
+  .article-comment-card_box {
+    padding-bottom: calc(80px + var(--ai-view-padding-bottom));
+  }
 </style>
