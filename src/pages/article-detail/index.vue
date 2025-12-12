@@ -1,23 +1,16 @@
 <script setup lang="ts">
-  import Head from '@/assets/public/Head.png'
-  import swipeOne from '@/assets/public/swipe-1.png'
-  import { useAppImgStyle } from '@/hooks/useAppImgStyle'
-  import { useDetail } from '@/hooks/useDetail'
+import Head from "@/assets/public/Head.png";
+import swipeOne from "@/assets/public/swipe-1.png";
+import { useAppImgStyle } from "@/hooks/useAppImgStyle";
+import { useDetail } from "@/hooks/useDetail";
 
-  defineOptions({
-    name: 'ArticleDetail'
-  })
+defineOptions({
+  name: "ArticleDetail",
+});
 
-  const { detailLikeIcon, likeIcon } = useAppImgStyle()
-  const {
-    loding,
-    dynamicInfo,
-    commentList,
-    isLike,
-    onAvator,
-    onLike,
-    onSend
-  } = useDetail()
+const { detailLikeIcon, likeIcon } = useAppImgStyle();
+const { loding, dynamicInfo, commentList, isLike, onAvator, onLike, onSend } =
+  useDetail();
 </script>
 
 <template>
@@ -28,7 +21,13 @@
           v-for="(item, index) in dynamicInfo?.dynamicPic"
           :key="index"
         >
-          <van-image h-full w-full :src="item || swipeOne" fit="cover" />
+          <van-image
+            h-full
+            w-full
+            :src="item || swipeOne"
+            fit="cover"
+            position="top"
+          />
         </van-swipe-item>
       </van-swipe>
       <div
@@ -81,10 +80,7 @@
 
       <van-divider content-position="left">Comments</van-divider>
 
-      <comment-card
-        :list="commentList"
-        class="article-comment-card_box"
-      />
+      <comment-card :list="commentList" class="article-comment-card_box" />
 
       <input-box @send="onSend" />
     </div>
@@ -92,18 +88,18 @@
 </template>
 
 <style lang="less" scoped>
-  .article-detail_box {
-    background: var(--ai-article-detail-bg-color);
-    min-height: 100vh;
-  }
+.article-detail_box {
+  background: var(--ai-article-detail-bg-color);
+  min-height: 100vh;
+}
 
-  .my-swipe {
-    .van-swipe-item {
-      height: 379px;
-    }
+.my-swipe {
+  .van-swipe-item {
+    height: 379px;
   }
+}
 
-  .article-comment-card_box {
-    padding-bottom: calc(80px + var(--ai-view-padding-bottom));
-  }
+.article-comment-card_box {
+  padding-bottom: calc(80px + var(--ai-view-padding-bottom));
+}
 </style>
