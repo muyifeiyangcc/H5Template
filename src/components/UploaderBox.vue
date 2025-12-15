@@ -83,8 +83,10 @@
             :poster="item.objectUrl"
             @click.stop="onCheckVideo(item)"
           /> -->
+
           <video
             :src="item.url"
+            :poster="item.objectUrl"
             muted
             playsinline
             webkit-playsinline
@@ -115,6 +117,7 @@
           <video
             v-if="videoData.show"
             :src="videoData.url"
+            :poster="videoData.objectUrl"
             controls
             webkit-playsinline
             playsinline

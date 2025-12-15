@@ -73,7 +73,8 @@ export const useFile = (cb?: UploadSuccessCallback) => {
         const coverBlob = await extractCoverFromVideo(file)
         // 构造 File 对象用于上传
         const coverFile = new File([coverBlob], 'cover.jpg', {
-          type: 'image/jpeg'
+          type: 'image/jpeg',
+          lastModified: Date.now() // 防止缓存
         })
         const videoKey = `template_development/${Date.now()}_${coverFile.name}`
         const result = await client.put(videoKey, coverFile)
