@@ -63,15 +63,27 @@ export function useVideoCover(): UseVideoCoverReturn {
         // 设置到第 0 秒（有些浏览器需微小偏移）
         video.currentTime = 1 // 避免某些设备卡在 0s 无法渲染
 
-        // ✅ 关键修复3：必须用try/catch处理play()拒绝
-        try {
-          video.play()
-        } catch (e) {
-          error.value = `播放失败: ${e.message} (请检查WebView配置)`
-          cleanup()
-          isExtracting.value = false
-          resolve(null)
+        // ✅ 关键3：iOS 17必须用重试机制
+        let retryCount = 0
+        const tryPlay = () => {
+          video
+            .play()
+            .then(() => {
+              // 播放成功，等待onseeked
+            })
+            .catch(e => {
+              if (retryCount < 3 && e.name === 'NotAllowedError') {
+                retryCount++
+                setTimeout(tryPlay, 100) // 100ms重试
+              } else {
+                error.value = `播放失败: ${e.message} (iOS 17+ 修复)`
+                cleanup()
+                isExtracting.value = false
+                resolve(null)
+              }
+            })
         }
+        tryPlay()
       }
 
       video.onseeked = () => {
