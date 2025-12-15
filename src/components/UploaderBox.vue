@@ -67,6 +67,10 @@
 
 <template>
   <div class="uploader-box">
+    <cbb-input-test
+      v-if="fileList.length > 0"
+      v-model="fileList[0].message"
+    />
     <van-uploader
       v-model="fileList"
       :accept="isImage ? 'image/*' : 'video/*'"

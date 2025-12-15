@@ -19,7 +19,7 @@ type UploadSuccessCallback = (url: string) => void
 
 /** 获取对应文件并上传 */
 export const useFile = (cb?: UploadSuccessCallback) => {
-  const { extractCoverFromVideo } = useVideoCover()
+  const { extractCoverFromVideo, error } = useVideoCover()
 
   let fileInput: HTMLInputElement | null = null
   const stsData = ref<stsTypeData>()
@@ -81,6 +81,7 @@ export const useFile = (cb?: UploadSuccessCallback) => {
         const videoRes = await client.put(key, file)
         item.objectUrl = result.url.replace(/^http:\/\//, https)
         item.status = ''
+        item.message = error.value
         return videoRes.url.replace(/^http:\/\//, https)
       } else {
         const key = `template_development/${Date.now()}_${file.name}`
