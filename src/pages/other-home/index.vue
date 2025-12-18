@@ -136,7 +136,7 @@
         />
         <div h-2 w-20 relative>
           <van-image
-            v-if="!isShowFollow && shouldShowReport(item)"
+            v-if="!isShowFollow && shouldShowReport(userInfo)"
             round
             bottom-2
             left-14
@@ -164,7 +164,9 @@
       </ul>
       <ul px-layout-padding class="bottom-box">
         <li>{{ userInfo.about }}</li>
-        <li>
+        <li
+          v-if="shouldShowReport(userInfo)"
+        >
           <van-image :src="otherHomeMessageIcon" class="icon-box" />
           <span ml-3 class="public-number !mt-0" @click="onAddChat">
             Chat
