@@ -116,6 +116,11 @@
   onMounted(() => {
     getData()
   })
+
+  const shouldShowReport = (item) => {
+    // 不显示自己
+    return item.userId !== useData.userInfo.userId
+  }
 </script>
 
 <template>
@@ -131,7 +136,7 @@
         />
         <div h-2 w-20 relative>
           <van-image
-            v-if="!isShowFollow"
+            v-if="!isShowFollow && shouldShowReport(item)"
             round
             bottom-2
             left-14
@@ -185,6 +190,7 @@
           <li />
           <li>
             <van-image
+              v-if="shouldShowReport(item)"
               :src="reportIcon"
               @click.stop="
                 () => {
