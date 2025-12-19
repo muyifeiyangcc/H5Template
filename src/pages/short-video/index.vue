@@ -90,6 +90,10 @@
             :src="addIcon"
             fit="cover"
             @click="onFollow"
+            :style="{
+              width: 'var(--video-details-follow-width)',
+              height: 'var(--video-details-follow-height)'
+            }"
           />
         </div>
         <ul ml-3 shrink w-full>
@@ -98,6 +102,10 @@
             <van-image
               v-if="userInfo.userId !== dynamicInfo?.userId"
               :src="reportIcon"
+              :style="{
+                width: 'var(--report-image-width)',
+                height: 'var(--report-image-height)'
+              }"
               @click="isReport = true"
             />
           </li>
@@ -110,7 +118,14 @@
       </div>
       <ul class="bottom-btn">
         <li @click="isPopup = true">
-          <van-image :src="messageIcon" class="icon-box" />
+          <van-image 
+            :src="messageIcon" 
+            class="icon-box"
+            :style="{
+              width: 'var(--video-details-comment-width)',
+              height: 'var(--video-details-comment-height)'
+            }" 
+          />
           <span class="public-number">
             {{ dynamicInfo?.dynamicCommentCount }}
           </span>
@@ -119,6 +134,10 @@
           <van-image
             :src="isVideoLike ? likeIcon : detailLikeIcon"
             class="icon-box"
+            :style="{
+              width: 'var(--unlike-image-width)',
+              height: 'var(--unlike-image-height)'
+            }"
             @click="onVideoLike"
           />
           <span class="public-number">
@@ -148,8 +167,7 @@
 <style lang="less" scoped>
   .video-comment-card_box {
     padding-bottom: calc(60px + var(--ai-view-padding-bottom));
-  }
-
+  }  
   .video-box {
     width: 100%;
     height: 100vh;

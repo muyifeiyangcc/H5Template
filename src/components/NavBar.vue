@@ -34,7 +34,7 @@
       const { userId } = winDynamicData.find(
         v => v.dynamicId === queryId.value
       )
-      return userId === userInfo.userId
+      return userId !== userInfo.userId
     }
     return show
   })
@@ -118,14 +118,24 @@
   >
     <template v-if="showLeftArrow" #left>
       <div flex items-end justify-center>
-        <van-image :src="backIcon" />
+        <van-image 
+          :src="backIcon" 
+          :style="{
+            width: 'var(--back-image-width)',
+            height: 'var(--back-image-height)',
+          }"
+        />
         <span v-if="showTitle" ml-2 ai-user-name>{{ title }}</span>
       </div>
     </template>
     <template #right>
       <van-image
-        v-if="!showRightBtn && isShowOther && showLeftArrow && showRight"
+        v-if="(showRightBtn || isShowOther) && showLeftArrow && showRight"
         :src="reportIcon"
+        :style="{
+          width: 'var(--report-image-width)',
+          height: 'var(--report-image-height)'
+        }"
         @click="isReport = true"
       />
     </template>

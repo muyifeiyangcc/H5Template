@@ -144,6 +144,10 @@
             :src="otherHomeAddIcon"
             fit="cover"
             @click="onFollow"
+            :style="{
+              width: 'var(--other-home-follow-width)',
+              height: 'var(--other-home-follow-height)'
+            }"
           />
         </div>
         <span mt-1 ai-user-name>{{ userInfo.name }}</span>
@@ -167,7 +171,11 @@
         <li
           v-if="shouldShowReport(userInfo)"
         >
-          <van-image :src="otherHomeMessageIcon" class="icon-box" />
+          <van-image :src="otherHomeMessageIcon" class="icon-box" 
+            :style="{
+              width: 'var(--other-home-chat-width)',
+              height: 'var(--other-home-chat-height)'
+            }"/>
           <span ml-3 class="public-number !mt-0" @click="onAddChat">
             Chat
           </span>
@@ -192,8 +200,12 @@
           <li />
           <li>
             <van-image
-              v-if="shouldShowReport(item)"
+              v-if="shouldShowReport(item)" 
               :src="reportIcon"
+              :style="{
+                width: 'var(--report-image-width)',
+                height: 'var(--report-image-height)'
+              }"
               @click.stop="
                 () => {
                   isReport = true
@@ -222,7 +234,10 @@
         </ul>
         <span class="bottom-text">{{ item.dynamicDesc }}</span>
         <div class="like-box">
-          <van-image :src="otherHomeLikeIcon" class="icon-box" />
+          <van-image :src="otherHomeLikeIcon" class="icon-box" :style="{
+              width: 'var(--other-home-like-post-width)',
+              height: 'var(--other-home-like-post-height)'
+            }"/>
           <span class="public-number">{{ item.dynamicLikeCount }}</span>
         </div>
       </div>
@@ -236,7 +251,7 @@
   .other-home_box {
     min-height: 100vh;
     background: var(--ai-other-home-bg-color);
-  }
+  } 
 
   .top-user-info {
     background: url('@/assets/public/top-home.png');

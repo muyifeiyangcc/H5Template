@@ -175,10 +175,26 @@ interface Window {
   styleJson: {
     /** 顶部左侧返回图片 */
     backImage: string
+    /** 返回图片大小 */
+    backImageSize: {
+      width: string
+      height: string
+    }
     /** 顶部右侧举报图片 */
     reportImage: string
+
+    /** 举报图标大小 */
+    reportImageSize: {
+      width: string, //图标宽度
+      height: string, //图标高度
+    },
     /** 点赞图标 */
     likeIcon: string
+    /** 点赞图标大小 */
+    unlikeImageSize: {
+      width: string, //图标宽度
+      height: string, //图标高度
+    },
     /** 点赞数量文本样式 */
     likeNumTextStyle: FontStyle
     /** 用户名称样式 */
@@ -196,7 +212,9 @@ interface Window {
     inputStyle: BorderStyle & {
       /** 右侧发送图标 */
       sendIcon: string
-      placeholderCorlor: string
+      placeholderCorlor: string,
+      sendIconWidth: string,
+      sendIconHeight: string,
     }
     /** 表单标题 */
     formTitleStyle: FontStyle & {
@@ -253,7 +271,9 @@ interface Window {
         width: string
         height: string
         color: string
-        rightIcon: string
+        rightIcon: string,//右箭头图标
+        rightIconWidth: string,
+        rightIconHeight: string,
       }
       /** 弹框样式 */
       popupStyle: {
@@ -277,10 +297,14 @@ interface Window {
 
     /** 短视频 - ShortVideo 路由 */
     shortVideoStyle: GeneralStyle & {
-      /** 添加图标 */
+      /** 关注他人图标 */
       addIcon: string
+      addIconWidth: string,
+      addIconHeight: string,
       /** 留言图标 */
       messageIcon: string
+      messageIconWidth: string,
+      messageIconHeight: string,
       /** 点赞图标 */
       likeIcon: string
       avatarWidth: string
@@ -295,10 +319,16 @@ interface Window {
     otherHomeStyle: GeneralStyle & {
       /** 添加图标 */
       addIcon: string
+      addIconWidth: string,
+      addIconHeight: string,
       /** 留言图标 */
       messageIcon: string
+      messageIconWidth: string,
+      messageIconHeight: string,
       /** 点赞图标 */
       likeIcon: string
+      likeIconWidth: string,
+      likeIconHeight: string,
       /** 顶部数据样式 */
       topDataStyle: {
         /** 说明 */
